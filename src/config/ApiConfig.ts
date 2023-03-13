@@ -1,9 +1,7 @@
-import AxiosConfig from "@/model/AxiosConfig";
-
-const Api1HeaderConfig: AxiosConfig = {
+const ApiConfig: Object = {
     baseURL: `http://localhost:8081`,
     headers: {
         "Content-Type": "application/json"
     }
 }
-export default Api1HeaderConfig;
+export default ApiConfig;

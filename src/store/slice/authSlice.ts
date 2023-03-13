@@ -1,19 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-// import LoginService from '@/services/loginAxios';
+import AuthService from '@/services/AuthServices';
 
 // Async thunk to call login API
-// export const loginAsync = createAsyncThunk(
-//   'auth/loginAsync',
-//   async ({ username, password }, thunkAPI) => {
-//     try {
-//       const response = await LoginService.login({ email: username, password });
+export const loginAsync = createAsyncThunk(
+  'auth/loginAsync',
+  async ({ username, password }: any, thunkAPI) => {
+    try {
+      const response = await AuthService.login({ email: username, password });
       
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
+      return response.data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -21,7 +21,7 @@ export const authSlice = createSlice({
     loading: false,
     isLoggedIn: false,
     user: null,
-    error: null
+    error: ''
   },
   reducers: {
     login: (state, action) => {
@@ -45,7 +45,7 @@ export const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload;
       })
-      .addCase(loginAsync.rejected, (state, action) => {
+      .addCase(loginAsync.rejected, (state: any, action) => {
         state.loading = false;
         state.error = action.payload;
       });
