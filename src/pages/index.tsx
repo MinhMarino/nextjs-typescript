@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <MainLayout>
-        <p>Content goes here</p>
+        <p className='font-bold'>Content goes here</p>
         <button onClick={() => dispatchLogin()}>Dispatch redux</button>
       </MainLayout>
     </>
